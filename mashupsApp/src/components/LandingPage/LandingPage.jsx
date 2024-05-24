@@ -11,6 +11,7 @@ const LandingPage = () => {
                         <div className="logo">MashupsApp</div>
                     </a>
                     <ul className="nav-links">
+                        <li><a href="/mashup">Mashup</a></li>
                         <li><a href="#features">Features</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -19,7 +20,7 @@ const LandingPage = () => {
                 <div className="hero">
                     <h1>Welcome to MashupsApp</h1>
                     <p>Your one-stop solution for amazing mashups.</p>
-                    <a href="#features" className="btn-primary">Discover More</a>
+                    <a href="/mashup" className="btn-primary">Discover More</a>
                 </div>
             </header>
             <section id="features" className="features">

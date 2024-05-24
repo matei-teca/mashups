@@ -1,0 +1,36 @@
+/* src/components/MashupPage.css */
+
+.mashup-page {
+    width: 100vw;
+    text-align: center;
+    background-color: #fff;
+}
+
+.mashup-content {
+    margin-top: 50px;
+}
+
+.mashup-content h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.mashup-content p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.mashup-tools {
+    margin-top: 20px;
+    /* Add more styles for your mashup tools here */
+}
+
+.footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    color: #333;
+    text-align: center;
+}
