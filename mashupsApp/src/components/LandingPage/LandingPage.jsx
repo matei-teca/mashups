@@ -7,8 +7,9 @@ const LandingPage = () => {
         <div className="landing-page">
             <header className="header">
                 <nav className="navbar">
-                    <a href="/" style={{"text-decoration": "none", "color":"white"}}>
-                        <div className="logo">MashupsApp</div></a>
+                    <a href="/" style={{textDecoration: "none", color: "white"}}>
+                        <div className="logo">MashupsApp</div>
+                    </a>
                     <ul className="nav-links">
                         <li><a href="#features">Features</a></li>
                         <li><a href="#about">About</a></li>
@@ -40,11 +41,17 @@ const LandingPage = () => {
             </section>
             <section id="about" className="about">
                 <h2>About Us</h2>
-                <p>MashupsApp is dedicated to providing the best platform for creating and sharing mashups. Our mission is to empower creativity and bring people together through music and videos.</p>
+                <p>MashupsApp is a platform that brings together creators and consumers of unique multimedia mashups. Our mission is to provide a seamless experience for users to express their creativity, discover new content, and connect with like-minded individuals.</p>
+                <p>Whether you're a music enthusiast, a video creator, or simply someone who enjoys exploring innovative combinations of media, MashupsApp has something for you. Our user-friendly interface and powerful tools empower users to unleash their imagination and share their creations with the world.</p>
             </section>
             <section id="contact" className="contact">
                 <h2>Contact Us</h2>
-                <p>Have questions or feedback? <a href="mailto:support@mashupsapp.com">Email us</a>.</p>
+                <p>We value your feedback and are here to assist you with any questions or concerns you may have. Feel free to reach out to us via email at <a href="mailto:support@mashupsapp.com">support@mashupsapp.com</a> or through our social media channels:</p>
+                <ul>
+                    <li>Twitter: <a href="https://twitter.com/mashupsapp">@mashupsapp</a></li>
+                    <li>Facebook: <a href="https://www.facebook.com/mashupsapp">MashupsApp</a></li>
+                    <li>Instagram: <a href="https://www.instagram.com/mashupsapp/">@mashupsapp</a></li>
+                </ul>
             </section>
             <footer className="footer">
                 <p>&copy; 2024 MashupsApp. All rights reserved.</p>
