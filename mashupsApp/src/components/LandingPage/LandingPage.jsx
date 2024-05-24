@@ -7,7 +7,8 @@ const LandingPage = () => {
         <div className="landing-page">
             <header className="header">
                 <nav className="navbar">
-                    <div className="logo">MashupsApp</div>
+                    <a href="/" style={{"text-decoration": "none", "color":"white"}}>
+                        <div className="logo">MashupsApp</div></a>
                     <ul className="nav-links">
                         <li><a href="#features">Features</a></li>
                         <li><a href="#about">About</a></li>
