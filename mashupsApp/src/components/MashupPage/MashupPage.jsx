@@ -41,7 +41,7 @@ const MashupPage = () => {
             <header className="header">
                 <nav className="navbar">
                     <a href="/" style={{ textDecoration: "none", color: "white" }}>
-                        <div className="logo">MashupsApp</div>
+                        <div className="logo">Mashapps</div>
                     </a>
                     <ul className="nav-links">
                         <li><a href="/">Home</a></li>

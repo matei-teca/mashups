@@ -8,7 +8,7 @@ const LandingPage = () => {
             <header className="header">
                 <nav className="navbar">
                     <a href="/" style={{textDecoration: "none", color: "white"}}>
-                        <div className="logo">MashupsApp</div>
+                        <div className="logo">Mashapps</div>
                     </a>
                     <ul className="nav-links">
                         <li><a href="/mashup">Mashup</a></li>
@@ -18,7 +18,7 @@ const LandingPage = () => {
                     </ul>
                 </nav>
                 <div className="hero">
-                    <h1>Welcome to MashupsApp</h1>
+                    <h1>Welcome to Mashapps</h1>
                     <p>Your one-stop solution for amazing mashups.</p>
                     <a href="/mashup" className="btn-primary">Discover More</a>
                 </div>
