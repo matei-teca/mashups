@@ -1,34 +1,39 @@
 // src/components/MashupPage.jsx
 import React, { useState, useEffect } from 'react';
 import { getAuthUrl, getAccessTokenFromUrl, searchTracks } from '../../spotifyService';
+import { searchYouTube } from '../../youtubeService';
 import SpotifyPlayer from './SpotifyPlayer';
+import YouTubePlayer from './YouTubePlayer';
 import './MashupPage.css';
 
 const MashupPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [tracks, setTracks] = useState([]);
-    const [token, setToken] = useState('');
-    const [selectedTrackUri, setSelectedTrackUri] = useState('');
+    const [spotifyTracks, setSpotifyTracks] = useState([]);
+    const [youtubeVideos, setYoutubeVideos] = useState([]);
+    const [spotifyToken, setSpotifyToken] = useState('');
+    const [selectedSpotifyTrackUri, setSelectedSpotifyTrackUri] = useState('');
+    const [selectedYouTubeVideoId, setSelectedYouTubeVideoId] = useState('');
 
     useEffect(() => {
         const token = getAccessTokenFromUrl();
         if (token) {
-            setToken(token);
+            setSpotifyToken(token);
         }
     }, []);
 
-    const handleSearch = async () => {
-        if (!token) {
+    const handleSpotifySearch = async () => {
+        if (!spotifyToken) {
             window.location.href = getAuthUrl();
             return;
         }
 
-        const result = await searchTracks(token, searchQuery);
-        setTracks(result);
+        const result = await searchTracks(spotifyToken, searchQuery);
+        setSpotifyTracks(result);
     };
 
-    const handlePlayTrack = (uri) => {
-        setSelectedTrackUri(uri);
+    const handleYouTubeSearch = async () => {
+        const result = await searchYouTube(searchQuery);
+        setYoutubeVideos(result);
     };
 
     return (
@@ -40,8 +45,9 @@ const MashupPage = () => {
                     </a>
                     <ul className="nav-links">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/#about">About</a></li>
-                        <li><a href="/#contact">Contact</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/mashup">Mashup</a></li>
                     </ul>
                 </nav>
             </header>
@@ -53,19 +59,32 @@ const MashupPage = () => {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search for tracks"
+                        placeholder="Search for tracks and videos"
                     />
-                    <button onClick={handleSearch}>Search</button>
-                    <div className="tracks">
-                        {tracks.map((track) => (
-                            <div key={track.id} className="track" onClick={() => handlePlayTrack(track.uri)}>
+                    <button onClick={handleSpotifySearch}>Search Spotify</button>
+                    <button onClick={handleYouTubeSearch}>Search YouTube</button>
+                    <div className="spotify-tracks">
+                        <h3>Spotify Tracks</h3>
+                        {spotifyTracks.map((track) => (
+                            <div key={track.id} className="track" onClick={() => setSelectedSpotifyTrackUri(track.uri)}>
                                 <img src={track.album.images[0]?.url} alt={track.name} />
                                 <div>{track.name}</div>
                                 <div>{track.artists.map(artist => artist.name).join(', ')}</div>
                             </div>
                         ))}
                     </div>
-                    {selectedTrackUri && <SpotifyPlayer token={token} trackUri={selectedTrackUri} />}
+                    <div className="youtube-videos">
+                        <h3>YouTube Videos</h3>
+                        {youtubeVideos.map((video) => (
+                            <div key={video.id.videoId} className="video" onClick={() => setSelectedYouTubeVideoId(video.id.videoId)}>
+                                <img src={video.snippet.thumbnails.default.url} alt={video.snippet.title} />
+                                <div>{video.snippet.title}</div>
+                                <div>{video.snippet.channelTitle}</div>
+                            </div>
+                        ))}
+                    </div>
+                    {selectedSpotifyTrackUri && <SpotifyPlayer token={spotifyToken} trackUri={selectedSpotifyTrackUri} />}
+                    {selectedYouTubeVideoId && <YouTubePlayer videoId={selectedYouTubeVideoId} />}
                 </div>
             </section>
             <footer className="footer">
@@ -76,3 +95,4 @@ const MashupPage = () => {
 };
 
 export default MashupPage;
+2
