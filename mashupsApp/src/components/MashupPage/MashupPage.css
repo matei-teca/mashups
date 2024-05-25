@@ -68,13 +68,13 @@
 }
 
 .btn-spotify {
-    border: 1px solid #1db954;
+    border: 1px solid black;
     color: #1db954;
     margin-right: 10px;
 }
 
 .btn-youtube {
-    border: 1px solid #ff0000;
+    border: 1px solid black;
     color: #ff0000;
 }
 
