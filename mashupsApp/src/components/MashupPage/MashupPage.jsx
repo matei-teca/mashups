@@ -66,13 +66,12 @@ const MashupPage = () => {
             <header className="header">
                 <nav className="navbar">
                     <a href="/" className="logo-link">
-                        <div className="logo">MashupsApp</div>
+                        <div className="logo">Mashapps</div>
                     </a>
                     <ul className="nav-links">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                        <li><a href="/mashup">Mashup</a></li>
+                        <li><a href="/#about">About</a></li>
+                        <li><a href="/#contact">Contact</a></li>
                     </ul>
                 </nav>
             </header>
