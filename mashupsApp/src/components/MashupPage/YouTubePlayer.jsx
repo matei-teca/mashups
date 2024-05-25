@@ -1,34 +1,17 @@
 // src/components/YouTubePlayer.jsx
-import React, { useEffect } from 'react';
+import React from 'react';
+import YouTube from 'react-youtube';
 
 const YouTubePlayer = ({ videoId }) => {
-    useEffect(() => {
-        // Load the YouTube IFrame Player API
-        const script = document.createElement('script');
-        script.src = 'https://www.youtube.com/iframe_api';
-        script.async = true;
-        document.body.appendChild(script);
+    const opts = {
+        height: '390',
+        width: '640',
+        playerVars: {
+            autoplay: 1,
+        },
+    };
 
-        window.onYouTubeIframeAPIReady = () => {
-            new window.YT.Player('player', {
-                height: '390',
-                width: '640',
-                videoId,
-                events: {
-                    onReady: (event) => event.target.playVideo(),
-                },
-            });
-        };
-
-        return () => {
-            // Clean up the YouTube IFrame Player API
-            document.body.removeChild(script);
-        };
-    }, [videoId]);
-
-    return <div id="player"></div>;
+    return <YouTube videoId={videoId} opts={opts} key={videoId} />;
 };
 
 export default YouTubePlayer;
-
-

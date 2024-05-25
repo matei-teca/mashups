@@ -65,6 +65,18 @@ const MashupPage = () => {
                     <button onClick={handleSpotifySearch} className="btn btn-spotify">Search Spotify</button>
                     <button onClick={handleYouTubeSearch} className="btn btn-youtube">Search YouTube</button>
                 </div>
+                <div className="player-section">
+                    {selectedYouTubeVideoId && (
+                        <div className="youtube-player-container">
+                            <YouTubePlayer videoId={selectedYouTubeVideoId} key={selectedYouTubeVideoId} />
+                        </div>
+                    )}
+                    {selectedSpotifyTrackUri && (
+                        <div className="spotify-player-container">
+                            <SpotifyPlayer token={spotifyToken} trackUri={selectedSpotifyTrackUri} />
+                        </div>
+                    )}
+                </div>
                 <div className="results">
                     <div className="results-section">
                         <h3>Spotify Tracks</h3>
@@ -104,10 +116,6 @@ const MashupPage = () => {
                             ))}
                         </div>
                     </div>
-                </div>
-                <div className="player-section">
-                    {selectedSpotifyTrackUri && <SpotifyPlayer token={spotifyToken} trackUri={selectedSpotifyTrackUri} />}
-                    {selectedYouTubeVideoId && <YouTubePlayer videoId={selectedYouTubeVideoId} />}
                 </div>
             </section>
             <footer className="footer">
