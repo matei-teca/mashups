@@ -1,36 +1,138 @@
 /* src/components/MashupPage.css */
 
 .mashup-page {
-    width: 100vw;
+    font-family: Arial, sans-serif;
+    color: #333;
     text-align: center;
-    background-color: #fff;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.header {
+    background-color: #333;
+    padding: 20px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
 }
 
 .mashup-content {
-    margin-top: 50px;
+    padding: 40px 20px;
 }
 
-.mashup-content h2 {
-    color: #333;
-    font-size: 28px;
-    margin-bottom: 20px;
+.search-tools {
+    margin-bottom: 40px;
 }
 
-.mashup-content p {
-    color: #555;
+.search-input {
+    padding: 10px;
     font-size: 16px;
-    line-height: 1.6;
+    width: 300px;
+    margin-right: 10px;
 }
 
-.mashup-tools {
-    margin-top: 20px;
-    /* Add more styles for your mashup tools here */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-spotify {
+    border: 3px solid #1db954;
+    margin-right: 10px;
+}
+
+.btn-youtube {
+    border: 3px solid #ff0000;
+}
+
+.results {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.results-section {
+    width: 45%;
+}
+
+.tracks-grid, .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.track, .video {
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: left;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.track:hover, .video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.track img, .video img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.track-info, .video-info {
+    margin-top: 10px;
+}
+
+.track-name, .video-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.track-artists, .video-channel {
+    color: #666;
+    font-size: 14px;
+}
+
+.player-section {
+    margin-top: 40px;
 }
 
 .footer {
-    margin-top: 50px;
-    padding: 20px;
-    background-color: #f1f1f1;
-    color: #333;
-    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    margin-top: 40px;
 }

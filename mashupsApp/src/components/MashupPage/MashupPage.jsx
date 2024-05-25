@@ -40,8 +40,8 @@ const MashupPage = () => {
         <div className="mashup-page">
             <header className="header">
                 <nav className="navbar">
-                    <a href="/" style={{ textDecoration: "none", color: "white" }}>
-                        <div className="logo">Mashapps</div>
+                    <a href="/" className="logo-link">
+                        <div className="logo">MashupsApp</div>
                     </a>
                     <ul className="nav-links">
                         <li><a href="/">Home</a></li>
@@ -54,35 +54,58 @@ const MashupPage = () => {
             <section className="mashup-content">
                 <h2>Mashup Your Content</h2>
                 <p>Use our tools to create amazing mashups from your favorite music and videos.</p>
-                <div className="mashup-tools">
+                <div className="search-tools">
                     <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search for tracks and videos"
+                        className="search-input"
                     />
-                    <button onClick={handleSpotifySearch}>Search Spotify</button>
-                    <button onClick={handleYouTubeSearch}>Search YouTube</button>
-                    <div className="spotify-tracks">
+                    <button onClick={handleSpotifySearch} className="btn btn-spotify">Search Spotify</button>
+                    <button onClick={handleYouTubeSearch} className="btn btn-youtube">Search YouTube</button>
+                </div>
+                <div className="results">
+                    <div className="results-section">
                         <h3>Spotify Tracks</h3>
-                        {spotifyTracks.map((track) => (
-                            <div key={track.id} className="track" onClick={() => setSelectedSpotifyTrackUri(track.uri)}>
-                                <img src={track.album.images[0]?.url} alt={track.name} />
-                                <div>{track.name}</div>
-                                <div>{track.artists.map(artist => artist.name).join(', ')}</div>
-                            </div>
-                        ))}
+                        <div className="tracks-grid">
+                            {spotifyTracks.map((track) => (
+                                <div
+                                    key={track.id}
+                                    className="track"
+                                    onClick={() => setSelectedSpotifyTrackUri(track.uri)}
+                                >
+                                    <img src={track.album.images[0]?.url} alt={track.name} />
+                                    <div className="track-info">
+                                        <div className="track-name">{track.name}</div>
+                                        <div className="track-artists">
+                                            {track.artists.map(artist => artist.name).join(', ')}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                    <div className="youtube-videos">
+                    <div className="results-section">
                         <h3>YouTube Videos</h3>
-                        {youtubeVideos.map((video) => (
-                            <div key={video.id.videoId} className="video" onClick={() => setSelectedYouTubeVideoId(video.id.videoId)}>
-                                <img src={video.snippet.thumbnails.default.url} alt={video.snippet.title} />
-                                <div>{video.snippet.title}</div>
-                                <div>{video.snippet.channelTitle}</div>
-                            </div>
-                        ))}
+                        <div className="videos-grid">
+                            {youtubeVideos.map((video) => (
+                                <div
+                                    key={video.id.videoId}
+                                    className="video"
+                                    onClick={() => setSelectedYouTubeVideoId(video.id.videoId)}
+                                >
+                                    <img src={video.snippet.thumbnails.default.url} alt={video.snippet.title} />
+                                    <div className="video-info">
+                                        <div className="video-title">{video.snippet.title}</div>
+                                        <div className="video-channel">{video.snippet.channelTitle}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
+                </div>
+                <div className="player-section">
                     {selectedSpotifyTrackUri && <SpotifyPlayer token={spotifyToken} trackUri={selectedSpotifyTrackUri} />}
                     {selectedYouTubeVideoId && <YouTubePlayer videoId={selectedYouTubeVideoId} />}
                 </div>
@@ -95,4 +118,3 @@ const MashupPage = () => {
 };
 
 export default MashupPage;
-2
