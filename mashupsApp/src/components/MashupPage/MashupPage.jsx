@@ -1,9 +1,9 @@
-// src/components/MashupPage.jsx
 import React, { useState, useEffect } from 'react';
 import { getAuthUrl, getAccessTokenFromUrl, searchTracks } from '../../spotifyService';
 import { searchYouTube } from '../../youtubeService';
 import SpotifyPlayer from './SpotifyPlayer';
 import YouTubePlayer from './YouTubePlayer';
+import axios from 'axios'; // Import Axios
 import './MashupPage.css';
 
 const MashupPage = () => {
@@ -13,6 +13,7 @@ const MashupPage = () => {
     const [spotifyToken, setSpotifyToken] = useState('');
     const [selectedSpotifyTrackUri, setSelectedSpotifyTrackUri] = useState('');
     const [selectedYouTubeVideoId, setSelectedYouTubeVideoId] = useState('');
+    const [lyrics, setLyrics] = useState('');
 
     useEffect(() => {
         const token = getAccessTokenFromUrl();
@@ -34,6 +35,30 @@ const MashupPage = () => {
     const handleYouTubeSearch = async () => {
         const result = await searchYouTube(searchQuery);
         setYoutubeVideos(result);
+    };
+
+    const fetchLyrics = async (artist, title) => {
+        console.log('Fetching lyrics for:', artist, title);
+        try {
+            const response = await axios.get(`https://api.lyrics.ovh/v1/${artist}/${title}`);
+            console.log('Lyrics API response:', response.data);
+            setLyrics(response.data.lyrics);
+        } catch (error) {
+            console.error('Error fetching lyrics:', error);
+            setLyrics('Lyrics not found');
+        }
+    };
+
+    const playTrack = (track) => {
+        console.log('Playing track:', track.name);
+        setSelectedSpotifyTrackUri(track.uri);
+        fetchLyrics(track.artists[0].name, track.name);
+    };
+    
+    const playVideo = (video) => {
+        console.log('Playing video:', video.snippet.title);
+        setSelectedYouTubeVideoId(video.id.videoId);
+        fetchLyrics(video.snippet.channelTitle, video.snippet.title);
     };
 
     return (
@@ -85,7 +110,7 @@ const MashupPage = () => {
                                 <div
                                     key={track.id}
                                     className="track"
-                                    onClick={() => setSelectedSpotifyTrackUri(track.uri)}
+                                    onClick={() => playTrack(track)}
                                 >
                                     <img src={track.album.images[0]?.url} alt={track.name} />
                                     <div className="track-info">
@@ -105,7 +130,7 @@ const MashupPage = () => {
                                 <div
                                     key={video.id.videoId}
                                     className="video"
-                                    onClick={() => setSelectedYouTubeVideoId(video.id.videoId)}
+                                    onClick={() => playVideo(video)}
                                 >
                                     <img src={video.snippet.thumbnails.default.url} alt={video.snippet.title} />
                                     <div className="video-info">
@@ -118,6 +143,14 @@ const MashupPage = () => {
                     </div>
                 </div>
             </section>
+
+            <section className="lyrics-section">
+                <div className="lyrics-container">
+                    <h3>Lyrics</h3>
+                    <div className="lyrics">{lyrics}</div>
+                </div>
+            </section>
+
             <footer className="footer">
                 <p>&copy; 2024 MashupsApp. All rights reserved.</p>
             </footer>

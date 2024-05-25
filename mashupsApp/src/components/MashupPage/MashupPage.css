@@ -137,6 +137,16 @@
     font-size: 14px;
 }
 
+.lyrics-section{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.lyrics-container{
+    width: 60%;
+}
+
 .footer {
     background-color: #333;
     color: white;
